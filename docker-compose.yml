@@ -1,24 +1,18 @@
 build:
   container_name: ghost_build
   image: trunk/ghost_env
-
-  command: "/bin/bash -l -c 'npm i --no-bin-links && npm i sqlite3 --no-bin-links  && git submodule update --remote --merge && grunt init && grunt prod'"
-
+  command: "/bin/bash -l -c 'npm run build'"
   working_dir: /ghost
   volumes:
     - ./:/ghost
 
-
-
 web:
   container_name: ghost_env
   image: trunk/ghost_env
-
   command: "/bin/bash -l -c 'npm start --production'"
 
   ports:
     - 2368:2368
-
 
   working_dir: /ghost
   volumes:
